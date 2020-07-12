@@ -33,6 +33,10 @@ button {
   min-width:130px;
 }
 </style>
+<script>
+//document.getElementById("addcase").onclick = function() {document.getElementById("box2").children[1].innerText++};
+//document.getElementById("subtractcase").onclick = function() {document.getElementById("box2").children[1].innerText--};
+</script>
 </head>
 <body>
 <h1>College Coronavirus tracker</h1>
@@ -40,7 +44,7 @@ button {
     <p>Grinnell College</p>
   </div>
   <div id="box2"><h2>number of cases</h2>
-    <p>15</p>
+    <textarea>15</textarea>
   </div>
   <div id="box3"><h2>Location/Origin</h2>
     <p>Grinnell, Iowa</p>
@@ -48,4 +52,10 @@ button {
 <div>
   <button id="addcase">Add Case</button>
   <button id="subtractcase">Subtract Case</button>
-</div></body></html>
+</div>
+<script>
+document.getElementById("addcase").onclick = function() {document.getElementById("box2").children[1].value++};
+document.getElementById("subtractcase").onclick = function() {document.getElementById("box2").children[1].value--};
+</script>
+</body>
+</html>
