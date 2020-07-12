@@ -1,8 +1,51 @@
-<html>
-<head>
+<html><head>
 <title>Tracker Home</title>
+<style type="text/css">
+div {
+  border: solid 4px green;
+  margin:10px;
+  padding:10px;
+  max-width:20%;
+  float:left;
+  min-height:110px;
+}
+
+div:hover {
+  background-color:rgb(255, 180, 255);
+}
+
+h1 {
+  padding:10px;
+}
+
+button {
+  clear:both;
+  float:left;
+  margin:10px;
+  background-color: #a0FFa0; /* Green */
+  border: solid 1px green;
+  color: black;
+  padding: 4px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  min-width:130px;
+}
+</style>
 </head>
 <body>
 <h1>College Coronavirus tracker</h1>
-</body>
-</html>
+  <div id="box1"><h2>name</h2>
+    <p>Grinnell College</p>
+  </div>
+  <div id="box2"><h2>number of cases</h2>
+    <p>15</p>
+  </div>
+  <div id="box3"><h2>Location/Origin</h2>
+    <p>Grinnell, Iowa</p>
+  </div>
+<div>
+  <button id="addcase">Add Case</button>
+  <button id="subtractcase">Subtract Case</button>
+</div></body></html>
