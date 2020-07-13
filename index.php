@@ -25,12 +25,25 @@ class Institution {
 
 class Tracker {
 	
+	public $fullData;
 	
 	public function getData() {
 		$myfile = fopen("data-w8lLG.csv", "r") or die("Unable to open file!");
 		$myData = fread($myfile,filesize("data-w8lLG.csv"));
 		fclose($myfile);
+		$this->fullData = $myData;
 	}
+	
+	public function parseData() {
+		$dataBase = explode(PHP_EOL, $this->fullData);
+	}
+	
+	public function __construct () {
+		$this->getData();
+		$this->parseData();
+		
+	}
+	
 
 }
 
