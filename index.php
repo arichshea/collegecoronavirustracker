@@ -9,7 +9,6 @@ class Institution {
 	public $stateCode;
 	public $policyType;
 	public $sourceLink;
-	public $locationCoordinates;
 	
 	public function __construct( $databaseArray ) {
 		$this->name = $databaseArray[0];
@@ -19,9 +18,6 @@ class Institution {
 		$this->getCoordinates();
 	}
 	
-	public function getCoordinates() {
-		
-	}
 	
 }
 
