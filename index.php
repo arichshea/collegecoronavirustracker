@@ -8,7 +8,7 @@ class Institution {
 	public $name;
 	public $control;
 	public $stateCode;
-	public $combinePolicySource
+	public $combinePolicySource;
 	public $policyType;
 	public $sourceLink;
 	
@@ -28,6 +28,7 @@ class Tracker {
 	
 	public $fullData;
 	public $fullDataArray;
+	public $HTML;
 	
 	public function getData() {
 		$myfile = fopen("data-w8lLG.csv", "r") or die("Unable to open file!");
@@ -37,10 +38,10 @@ class Tracker {
 	}
 	
 	public function parseData() {
-		$fullDataArrayCommas = explode(PHP_EOL, $this->fullData);
+		$fullDataArrayCommas = explode("\n", $this->fullData);
 		$this->fullDataArray = array();
 		foreach ($fullDataArrayCommas as $record) {
-			$recordArray = explode(',', $record);
+			$recordArray = explode(",",$record);
 			$myInstitution  = new Institution($recordArray);
 			$this->fullDataArray[] = $myInstitution;
 		}
@@ -54,28 +55,25 @@ class Tracker {
 	}
 	
 	public function displayData() {
-		$myHTML = <<<'EOT'
+		$myHTML = "
 	<html>
 		<head>
-			<title>Tarot Card Learner</title>
-			<script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
-			<script src='./learnTarot.js'></script>
-			<link rel="stylesheet" type="text/css" href="learnTarot.css">
+			<title>College Coronavirus Tracker</title>
 		</head>
-		<body>
-EOT;
-
+		<body>";
 		foreach ($this->fullDataArray as $institution) {
 			$myHTML .= "<p>".$institution->name." ".$institution->control." ".$institution->stateCode." ".$institution->combinePolicySource."</p>";
 		}
 		
-		$myHTML = "</body></html>";
+		$myHTML .= "</body></html>";
 		
-		echo $myHTML;
+		$this->HTML = $myHTML;
 	}
 
 }
 
+
 $myPage = new Tracker();
+echo $myPage->HTML;
 
 ?>
