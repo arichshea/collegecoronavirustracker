@@ -91,7 +91,7 @@ class TrackerStateFilter extends Tracker {
 			</script>
 		</head>
 		<body>";
-		$myHTML .= "<input type='text' id='filterText'/><button id='filter' onclick='filterList();'>Filter</button><button id='reset' onclick='resetList();'>Reset</button>";
+		$myHTML .= "<h3>Use the box below to filter the list by exact phrases. You can filter the list multiple times to narrow results. Click Reset to restore the full list.</h3><input type='text' id='filterText'/><button id='filter' onclick='filterList();'>Filter</button><button id='reset' onclick='resetList();'>Reset</button>";
 		foreach ($this->fullDataArray as $institution) {
 			$myHTML .= "<p>".$institution->name." ".$institution->control." ".$institution->stateCode." ".$institution->combinePolicySource."</p>";
 		}
