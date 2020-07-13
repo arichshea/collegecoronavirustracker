@@ -72,8 +72,39 @@ class Tracker {
 
 }
 
+class TrackerStateFilter extends Tracker {
+	
+	public function displayData() {
+		$myHTML = "
+	<html>
+		<head>
+			<title>College Coronavirus Tracker</title>
+			<script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+			<script> 
+			 function filterList() {
+				var myFilter = $('#filterText').val();
+				$('p:not(:contains('+ myFilter +'))').hide(); 
+			 }
+			 function resetList() {
+				 $('p').show();
+			 }
+			</script>
+		</head>
+		<body>";
+		$myHTML .= "<input type='text' id='filterText'/><button id='filter' onclick='filterList();'>Filter</button><button id='reset' onclick='resetList();'>Reset</button>";
+		foreach ($this->fullDataArray as $institution) {
+			$myHTML .= "<p>".$institution->name." ".$institution->control." ".$institution->stateCode." ".$institution->combinePolicySource."</p>";
+		}
+		
+		$myHTML .= "</body></html>";
+		
+		$this->HTML = $myHTML;
+	}
+	
+}
 
-$myPage = new Tracker();
+
+$myPage = new TrackerStateFilter();
 echo $myPage->HTML;
 
 ?>
