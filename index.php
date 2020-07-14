@@ -17,6 +17,16 @@ class Institution {
 		$this->control = $databaseArray[1];
 		$this->stateCode = $databaseArray[2];
 		$this->combinePolicySource = $databaseArray[3];
+		$this->processCombinePolicySource();
+	}
+	
+	public function processCombinePolicySource() {
+		if (strpos($this->combinePolicySource, "<a") !== FALSE) {
+			$this->sourceLink = $this->combinePolicySource;
+			$this->policyType = explode("<", explode(">", $this->combinePolicySource)[1])[0];
+		} else {
+			$this->policyType = $this->combinePolicySource;
+		}
 	}
 	
 	
@@ -93,7 +103,7 @@ class TrackerStateFilter extends Tracker {
 		<body>";
 		$myHTML .= "<h3>Use the box below to filter the list by exact phrases. You can filter the list multiple times to narrow results. Click Reset to restore the full list.</h3><input type='text' id='filterText'/><button id='filter' onclick='filterList();'>Filter</button><button id='reset' onclick='resetList();'>Reset</button>";
 		foreach ($this->fullDataArray as $institution) {
-			$myHTML .= "<p>".$institution->name." ".$institution->control." ".$institution->stateCode." ".$institution->combinePolicySource."</p>";
+			$myHTML .= "<p>".$institution->name." ".$institution->control." ".$institution->stateCode." policyType:".$institution->policyType." sourceLink:".$institution->sourceLink."</p>";
 		}
 		
 		$myHTML .= "</body></html>";
