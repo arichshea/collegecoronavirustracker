@@ -10,6 +10,7 @@ class Institution {
 	public $sourceLink;
 	
 	public function __construct( $databaseArray ) {
+		//echo $databaseArray[0];
 		$this->name = $databaseArray[0];
 		$this->control = $databaseArray[1];
 		$this->stateCode = $databaseArray[2];
@@ -34,7 +35,7 @@ class Institution {
 class Tracker {
 	
 	public $fullData;
-	public $fullDataArray;
+	public $fullInstitutionArray;
 	public $HTML;
 	
 	public function getData() {
@@ -45,12 +46,12 @@ class Tracker {
 	}
 	
 	public function parseData() {
-		$fullDataArrayCommas = explode("\n", $this->fullData);
-		$this->fullDataArray = array();
-		foreach ($fullDataArrayCommas as $record) {
+		$fullInstitutionArrayCommas = explode("\n", $this->fullData);
+		$this->fullInstitutionArray = array();
+		foreach ($fullInstitutionArrayCommas as $record) {
 			$recordArray = explode(",",$record);
 			$myInstitution  = new Institution($recordArray);
-			$this->fullDataArray[] = $myInstitution;
+			$this->fullInstitutionArray[] = $myInstitution;
 		}
 	}
 	
@@ -68,7 +69,7 @@ class Tracker {
 			<title>College Coronavirus Tracker</title>
 		</head>
 		<body>";
-		foreach ($this->fullDataArray as $institution) {
+		foreach ($this->fullInstitutionArray as $institution) {
 			$myHTML .= "<p>".$institution->name." ".$institution->control." ".$institution->stateCode." ".$institution->combinePolicySource."</p>";
 		}
 		
@@ -99,7 +100,7 @@ class TrackerStateFilter extends Tracker {
 		</head>
 		<body>";
 		$myHTML .= "<h3>Use the box below to filter the list by exact phrases. You can filter the list multiple times to narrow results. Click Reset to restore the full list.</h3><input type='text' id='filterText'/><button id='filter' onclick='filterList();'>Filter</button><button id='reset' onclick='resetList();'>Reset</button>";
-		foreach ($this->fullDataArray as $institution) {
+		foreach ($this->fullInstitutionArray as $institution) {
 			$myHTML .= "<p>".$institution->name." ".$institution->control." ".$institution->stateCode." policyType:".$institution->policyType." sourceLink:".$institution->sourceLink."</p>";
 		}
 		
