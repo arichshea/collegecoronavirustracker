@@ -17,9 +17,9 @@ class coronaStateMap {
 			$this->stateCollegeArray[$stateCode] = [];
 		}
 		foreach( $this->institutionArray as $institution) {
-			if (strpos($institution->policyType, "online") === FALSE) {
+			//if (strpos($institution->policyType, "online") === FALSE) {
 				$this->stateCollegeArray[$institution->stateCode][] = $institution;
-			}
+			//}
 		}
 		foreach($this->stateArray as $stateCode) {
 			$this->institutionCount[$stateCode] = count($this->stateCollegeArray[$stateCode]);
