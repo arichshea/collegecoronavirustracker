@@ -80,6 +80,8 @@ class coronaStateMap {
 			$green = 255 - ($interval * $count);
 			$blue = 255 - (floor($interval/2)* $count);
 			$this->stateColors[$stateCode] = "rgb($green, $blue, $blue)";
+			
+			
 		}
 	}
 	
