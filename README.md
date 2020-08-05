@@ -10,3 +10,5 @@ corruption whitespace (newlines) removed by hand
 US Map created using this library:
 
 https://newsignature.github.io/us-map/
+
+http://techslides.com/mapping-town-boundaries-with-d3
